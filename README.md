@@ -24,13 +24,13 @@
 > For the frontEnd directory:
 > 
 > ```bash
-> npm start
+> npm run
 > ```
 > 
 > For the Backend directory:
 > 
 > ```bash
-> npm run
+> npm start
 > ```
 
 > [!TIP]
