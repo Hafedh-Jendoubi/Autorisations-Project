@@ -24,13 +24,18 @@
 > For the frontEnd directory:
 > 
 > ```bash
-> npm run
+> npm run dev
 > ```
 > 
 > For the Backend directory:
 > 
 > ```bash
 > npm start
+> ```
+>
+> Type in your browser:
+> ```
+> http://localhost:5173/
 > ```
 
 > [!TIP]
