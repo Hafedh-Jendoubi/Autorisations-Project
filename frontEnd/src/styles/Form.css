@@ -1,0 +1,116 @@
+/* Style for the form element */
+form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Style for the label elements */
+form > label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Style for the input and textarea elements */
+form > input,
+form > textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+/* Ensure textarea does not become wider than the form */
+form > textarea {
+    max-width: 100%;
+}
+
+/* Additional styling for input focus state */
+form > input:focus,
+form > textarea:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+/* Style for the button container */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* Style for the submit and reset buttons */
+form > .button-container > input[type="submit"],
+form > .button-container > input[type="reset"] {
+    width: auto;
+    padding: 8px 16px;
+    margin: 0 5px;
+    border: 1px solid #007BFF;
+    border-radius: 3px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+/* Additional styling for button hover state */
+form > .button-container > input[type="submit"]:hover,
+form > .button-container > input[type="reset"]:hover {
+    background-color: #0056b3;
+}
+
+/* The Modal (background) */
+.modal {display: none;
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.invalid {
+  border-color: red;
+}

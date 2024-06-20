@@ -32,11 +32,12 @@ td {
 }
 
 th {
-  text-align: left;
+  text-align: center;
 }
 
 thead {
   th {
+    text-align: center;
     background-color: #55608f;
   }
 }
@@ -49,6 +50,7 @@ tbody {
   }
   td {
     position: relative;
+    text-align: center;
   }
 }
 
