@@ -1,5 +1,6 @@
 import React from "react"
 import '../styles/Form.css'
+import axios from "axios"
 
 function Form() {
     const [formData, setFormData] = React.useState({
@@ -11,31 +12,31 @@ function Form() {
 
     const [validity, setValidity] = React.useState({
         lastName: true,
-        firstName: true,
+        firstName: true
     });
 
-    function handleChange(event) {
+    const handleChange = (event) => {
         const { name, value } = event.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
-    }
+        setFormData({ ...formData, [name]: value });
+    };
 
-    function handleSubmit(event) {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const newValidity = {
-            lastName: formData.lastName.trim() !== '', //I used .trim() to make sure the user did not insert empty Space Bars.
-            firstName: formData.firstName.trim() !== '',
+            lastName: formData.lastName.trim() !== '',
+            firstName: formData.firstName.trim() !== ''
         };
 
         setValidity(newValidity);
 
         if (Object.values(newValidity).every(Boolean)) {
-            // All fields are valid, proceed with form submission
-            console.log(formData);
+            try {
+                const response = await axios.post('http://localhost:8081/adduser', formData);
+            } catch (error) {
+                console.error('There was an error adding the user!', error);
+            }
         }
-    }
+    };
 
     var modal = document.getElementById("myModal");
     window.onclick = function(event) {
