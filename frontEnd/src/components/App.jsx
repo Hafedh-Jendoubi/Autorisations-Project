@@ -1,6 +1,7 @@
 import React from 'react'
 import '../styles/App.css'
 import Form from './Form'
+import axios from 'axios'
 
 function App() {
   const [data, setData] = React.useState([]);
@@ -22,6 +23,22 @@ function App() {
     modal.style.display = "block";
   }
 
+  const getValue = async (event, id) => {
+    const { value } = event.target;
+    if(value === '1') { //Delete Function
+      if(confirm("Are you sure you want to delete this User?")){
+        try{
+          const response = await axios.post('http://localhost:8081/deleteuser', {userID: id});
+        }catch(error) {
+          console.log("Delete User Error: " + error);
+        }
+      }
+      location.reload();
+    }else if(value === '2') { //Update Function
+      console.log('Updating the user ID: ' + x);
+    }
+  }
+
   return (
     <div>
       <div className='container'>
@@ -33,6 +50,7 @@ function App() {
               <th>Prenom</th>
               <th>Date de Naissance</th>
               <th>Addresse</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -43,6 +61,17 @@ function App() {
                 <td>{d.prenom}</td>
                 <td>{formatDate(d.dateNaissance)}</td>
                 <td>{d.addresse}</td>
+                <td width={"190px"}>
+                  <div className="page">
+                    <div className="select-dropdown">
+                      <select onChange={() => getValue(event, d.id)}>
+                        <option value={""}>-- Chose Action --</option>
+                        <option value={"1"}>Delete</option>
+                        <option value={"2"}>Update</option>
+                      </select>
+                    </div>
+                  </div>
+                </td>
               </tr>
             ))}
           </tbody>

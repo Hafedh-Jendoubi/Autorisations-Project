@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 app.use(cors());
-app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.json());
 
 const db = mysql.createConnection({
     host: "localhost",
@@ -42,6 +42,16 @@ app.post('/adduser', (req, res) => {
     db.query(sql, [lastName, firstName, birthDate, address], (err, result) => {
         if (err) return res.status(500).json(err);
         return res.json({ message: 'User added successfully', result });
+    });
+});
+
+// Delete User
+app.post('/deleteuser', (req, res) => {
+    const { userID } = req.body;
+    const sql = "DELETE FROM `user` WHERE id=?";
+    db.query(sql, [userID], (err, result) => {
+        if (err) return res.status(500).json(err);
+        return res.json({message: 'User deleted successfully', result});
     });
 });
 

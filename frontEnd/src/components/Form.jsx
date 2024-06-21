@@ -33,8 +33,9 @@ function Form() {
             try {
                 const response = await axios.post('http://localhost:8081/adduser', formData);
             } catch (error) {
-                console.error('There was an error adding the user!', error);
+                console.error('There was an error adding the user: ', error);
             }
+            location.reload();
         }
     };
 
