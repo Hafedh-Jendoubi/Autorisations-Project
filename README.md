@@ -22,7 +22,6 @@
 > npm install react-router-dom axios bootstrap
 > ```
 >
-> [!IMPORTANT] 
 > ## Usage
 > 
 > For the frontEnd directory:
