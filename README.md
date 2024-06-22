@@ -1,6 +1,10 @@
+# Autorisations Project
+![Current Version](https://img.shields.io/badge/version-v1.3-blue)
+![GitHub contributors](https://img.shields.io/github/contributors/Hafedh-Jendoubi/Autorisations-Project)
+![GitHub top language](https://img.shields.io/github/languages/top/Hafedh-Jendoubi/Autorisations-Project)
+![GitHub stars](https://img.shields.io/github/stars/Hafedh-Jendoubi/Autorisations-Project)
+
 > [!NOTE]
-> # Autorisation Project
->
 >Authorization is a project currently undertaken by myself, Hafedh Jendoubi, assigned by the mentor from the Centre National d'Informatique (CNI). I have chosen to utilize React and Node.js for the project implementation.
 
 > [!IMPORTANT]
@@ -15,7 +19,7 @@
 > In order to install the project you have to run this command:
 >
 > ```bash
-> npm install
+> npm install react-router-dom axios bootstrap
 > ```
 >
 > [!IMPORTANT] 
