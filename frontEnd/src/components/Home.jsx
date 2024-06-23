@@ -12,18 +12,6 @@ function Home() {
             .catch(err => console.log(err));
     }, []);
 
-    function formatDate(dateString) {
-        if (dateString !== "0000-00-00") {
-            const date = new Date(dateString);
-            const year = date.getFullYear();
-            const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based in JavaScript
-            const day = String(date.getDate()).padStart(2, '0');
-            return `${year}-${month}-${day}`;
-        } else {
-            return "[Not Set]";
-        }
-    };
-
     function deleteUser(id) {
         if (confirm("Are you sure about deleting this User?")) {
             axios.delete('http://localhost:8081/deleteuser/' + id)
@@ -41,7 +29,7 @@ function Home() {
     function handleChange(event) {
         const { value } = event.target;
         if (value !== "") {
-            fetch('http://localhost:8081/getuserbyname/' + value)
+            fetch('http://localhost:8081/getuserbycin/' + value)
                 .then(res => {
                     if (res.status === 404) {
                         setData([]);
@@ -73,33 +61,31 @@ function Home() {
                             type='text'
                             name='search'
                             className={'form-control'}
-                            placeholder='Rechercher...'
+                            placeholder='Rechercher par CIN...'
                             onChange={handleChange}
                         />
                     </div>
                     <div className='col col-lg-2'>
-                        <Link to='/create' className='btn btn-success' style={{ marginBottom: "25px" }}>Ajouter +</Link>
+                        <Link to='/create' className='btn btn-success' style={{ marginBottom: "25px" }}>Ajouter Client</Link>
                     </div>
                 </div>
-                <table className='table table-hover'>
+                <table className='table table-hover align-middle'>
                     <thead className='table-dark'>
                         <tr>
-                            <th>ID</th>
                             <th>Nom</th>
                             <th>Prenom</th>
-                            <th>Date de Naissance</th>
-                            <th>Addresse</th>
+                            <th>Genre</th>
+                            <th>CIN</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {data.map((d, i) => (
                             <tr key={i}>
-                                <td>{d.id}</td>
                                 <td>{d.nom}</td>
                                 <td>{d.prenom}</td>
-                                <td>{formatDate(d.dateNaissance)}</td>
-                                <td>{d.addresse}</td>
+                                <td>{d.genre === "M" ? "Male" : "Femelle"}</td>
+                                <td>{d.cin}</td>
                                 <td>
                                     <Link to={`/read/${d.id}`} className='btn btn-sm btn-primary me-2'>Afficher</Link>
                                     <button className='btn btn-sm btn-danger me-2' onClick={() => deleteUser(d.id)}>Supprimer</button>

@@ -23,9 +23,9 @@ app.get('/', (req, res) => {
     return res.json("From Backend Side");
 });
 
-/* **************************************************** */
-/* ---------------------- Routes ---------------------- */
-/* **************************************************** */
+/* ************************************************************* */
+/* ---------------------- Requests Routes ---------------------- */
+/* ************************************************************* */
 
 // Get Data
 app.get('/user', (req, res) => {
@@ -47,11 +47,11 @@ app.get('/getuser/:id', (req, res) => {
     });
 });
 
-// Get User Data By Nom
-app.get('/getuserbyname/:nom', (req, res) => {
-    const { nom } = req.params;
-    const sql = "SELECT * FROM `user` WHERE nom LIKE ?";
-    db.query(sql, [`%${nom}%`], (err, data) => {
+// Get User Data By CIN
+app.get('/getuserbycin/:cin', (req, res) => {
+    const { cin } = req.params;
+    const sql = "SELECT * FROM `user` WHERE cin LIKE ?";
+    db.query(sql, [`%${cin}%`], (err, data) => {
         if (err) return res.json(err);
         if (data.length === 0) return res.status(404).json({ message: 'User not found' });
         return res.json(data);
@@ -60,12 +60,12 @@ app.get('/getuserbyname/:nom', (req, res) => {
 
 // Add new user
 app.post('/adduser', (req, res) => {
-    const { lastName, firstName, birthDate, address } = req.body;
-    if (!lastName || !firstName ) {
+    const { nom, prenom, dateNaissance, genre, tel, cin, addresse, email } = req.body;
+    if (!nom || !prenom || !tel || !cin || !genre) {
         return res.status(400).json({ error: "All fields are required" });
     }
-    const sql = "INSERT INTO `user`(`nom`, `prenom`, `dateNaissance`, `addresse`) VALUES (?, ?, ?, ?)";
-    db.query(sql, [lastName, firstName, birthDate, address], (err, result) => {
+    const sql = "INSERT INTO `user`(`nom`, `prenom`, `dateNaissance`, `genre`, `tel`, `cin`, `addresse`, `email`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    db.query(sql, [nom, prenom, dateNaissance, genre, tel, cin, addresse, email], (err, result) => {
         if (err) return res.status(500).json(err);
         return res.json({ message: 'User added successfully', result });
     });
@@ -85,18 +85,18 @@ app.delete('/deleteuser/:id', (req, res) => {
 
 // Update user
 app.post('/updateuser', (req, res) => {
-    const { id, nom, prenom, dateNaissance, addresse } = req.body;
-    if (!nom || !prenom ) {
+    const { id, nom, prenom, dateNaissance, genre, tel, cin, addresse, email } = req.body;
+    if (!nom || !prenom || !tel || !cin || !genre) {
         return res.status(400).json({ error: "All fields are required" });
     }
-    const sql = "UPDATE `user` SET `nom`=?,`prenom`=?,`dateNaissance`=?,`addresse`=? WHERE id=?";
-    db.query(sql, [nom, prenom, dateNaissance, addresse, id], (err, result) => {
+    const sql = "UPDATE `user` SET `nom`=?,`prenom`=?,`dateNaissance`=?,`genre`=?,`tel`=?,`cin`=?,`addresse`=?,`email`=? WHERE id=?";
+    db.query(sql, [nom, prenom, dateNaissance, genre, tel, cin, addresse, email, id], (err, result) => {
         if (err) return res.status(500).json(err);
         return res.json({ message: 'User added successfully', result });
     });
 });
 
-/* **************************************************** */
+/* ************************************************************* */
 
 app.listen(8081, () => {
     console.log("listening on port 8081");
