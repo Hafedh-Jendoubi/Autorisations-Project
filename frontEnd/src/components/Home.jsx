@@ -25,7 +25,8 @@ function Home() {
     };
 
     function deleteUser(id) {
-        axios.delete('http://localhost:8081/deleteuser/' + id)
+        if(confirm("Are you sure about deleting this User?")) {
+            axios.delete('http://localhost:8081/deleteuser/' + id)
             .then(() => {
                 // Refresh the data after deleting the user
                 fetch('http://localhost:8081/user')
@@ -34,6 +35,7 @@ function Home() {
                     .catch(err => console.log(err));
             })
             .catch(err => console.log(err));
+        }
     }
     
 
@@ -65,7 +67,6 @@ function Home() {
                             <td>{d.addresse}</td>
                             <td>
                                 <Link to={`/read/${d.id}`} className='btn btn-sm btn-primary me-2'>Read</Link>
-                                <button className='btn btn-sm btn-info me-2'>Modifier</button>
                                 <button className='btn btn-sm btn-danger me-2' onClick={() => deleteUser(d.id)}>Delete</button>
                             </td>
                         </tr>

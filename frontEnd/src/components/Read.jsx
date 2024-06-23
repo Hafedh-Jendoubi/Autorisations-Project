@@ -25,7 +25,7 @@ function Read() {
                 <div className='mb-3'>
                     <strong>Adresse: </strong> {data.addresse}
                 </div>
-                <Link to={`/update/${id}`} className='btn btn-success'>Edit</Link>
+                <Link to={`/update/${id}`} className='btn btn-success'>Modifier</Link>
                 <Link to='/' className='btn btn-primary ms-3'>Back</Link>
             </div>
         </div>

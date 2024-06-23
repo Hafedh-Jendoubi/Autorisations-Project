@@ -75,12 +75,12 @@ app.delete('/deleteuser/:id', (req, res) => {
 
 // Update user
 app.post('/updateuser', (req, res) => {
-    const { lastName, firstName, birthDate, address } = req.body;
-    if (!lastName || !firstName ) {
+    const { id, nom, prenom, dateNaissance, addresse } = req.body;
+    if (!nom || !prenom ) {
         return res.status(400).json({ error: "All fields are required" });
     }
     const sql = "UPDATE `user` SET `nom`=?,`prenom`=?,`dateNaissance`=?,`addresse`=? WHERE id=?";
-    db.query(sql, [lastName, firstName, birthDate, address, userID], (err, result) => {
+    db.query(sql, [nom, prenom, dateNaissance, addresse, id], (err, result) => {
         if (err) return res.status(500).json(err);
         return res.json({ message: 'User added successfully', result });
     });

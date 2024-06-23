@@ -4,45 +4,45 @@ import axios from 'axios';
 
 function Update() {
   const { id } = useParams();
-  const navigate = useNavigate();
-
   const [formData, setFormData] = React.useState({
-    lastName: '',
-    firstName: '',
-    birthDate: '',
-    address: ''
+    nom: '',
+    prenom: '',
+    dateNaissance: '',
+    addresse: ''
   });
-
   const [validity, setValidity] = React.useState({
-    lastName: true,
-    firstName: true
+    nom: true,
+    prenom: true
   });
-
-  React.useEffect(() => {
-    axios.get('http://localhost:8081/getuser/' + id)
-      .then(res => setFormData(res.data))
-      .catch(err => console.log(err));
-  }, [id]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    axios.get('http://localhost:8081/getuser/' + id)
+      .then(res => {
+        setFormData(res.data);
+      })
+      .catch(err => console.log(err));
+  }, []);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const newValidity = {
-      lastName: formData.lastName.trim() !== '',
-      firstName: formData.firstName.trim() !== ''
+      nom: formData.nom.trim() !== '',
+      prenom: formData.prenom.trim() !== ''
     };
     setValidity(newValidity);
     if (Object.values(newValidity).every(Boolean)) {
-      try {
-        await axios.post('http://localhost:8081/updateuser/' + id, formData);
-        navigate('/');
-      } catch (error) {
-        console.log(error);
-      }
+      axios.post('http://localhost:8081/updateuser', formData)
+        .then(() => {
+          navigate('/')
+        })
+        .catch(err => console.log(err));
     }
   };
 
@@ -67,33 +67,33 @@ function Update() {
             <label htmlFor='lastName'>Nom:</label>
             <input
               type='text'
-              name='lastName'
+              name='nom'
               className='form-control'
               placeholder='Nom *'
               value={formData.nom}
               onChange={handleChange}
-              style={{ borderColor: validity.lastName ? '' : 'red' }}
+              style={{ borderColor: validity.nom ? '' : 'red' }}
             />
           </div>
           <div className='mb-2'>
             <label htmlFor='firstName'>Prénom:</label>
             <input
               type='text'
-              name='firstName'
+              name='prenom'
               className='form-control'
               placeholder='Prénom *'
-              value={formData.firstName}
+              value={formData.prenom}
               onChange={handleChange}
-              style={{ borderColor: validity.firstName ? '' : 'red' }}
+              style={{ borderColor: validity.prenom ? '' : 'red' }}
             />
           </div>
           <div className='mb-2'>
             <label htmlFor='birthDate'>Date de Naissance:</label>
             <input
               type='date'
-              name='birthDate'
+              name='dateNaissance'
               className='form-control'
-              value={formData.birthDate ? formatDate(formData.birthDate) : ''}
+              value={formData.dateNaissance ? formatDate(formData.dateNaissance) : ''}
               onChange={handleChange}
             />
           </div>
@@ -102,10 +102,10 @@ function Update() {
             <textarea
               className="form-control"
               aria-label="With textarea"
-              name='address'
+              name='addresse'
               placeholder='Contoso Ltd
 215 E Tasman Dr'
-              value={formData.address}
+              value={formData.addresse}
               onChange={handleChange}
             />
           </div>
