@@ -36,7 +36,7 @@ app.get('/user', (req, res) => {
     });
 });
 
-// Get User Data
+// Get User Data By ID
 app.get('/getuser/:id', (req, res) => {
     const { id } = req.params;
     const sql = "SELECT * FROM `user` WHERE id=?";
@@ -47,6 +47,16 @@ app.get('/getuser/:id', (req, res) => {
     });
 });
 
+// Get User Data By Nom
+app.get('/getuserbyname/:nom', (req, res) => {
+    const { nom } = req.params;
+    const sql = "SELECT * FROM `user` WHERE nom LIKE ?";
+    db.query(sql, [`%${nom}%`], (err, data) => {
+        if (err) return res.json(err);
+        if (data.length === 0) return res.status(404).json({ message: 'User not found' });
+        return res.json(data);
+    });
+});
 
 // Add new user
 app.post('/adduser', (req, res) => {
