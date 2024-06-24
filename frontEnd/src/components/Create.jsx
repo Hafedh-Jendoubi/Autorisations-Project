@@ -41,22 +41,6 @@ function Create() {
             cin: formData.cin.trim() !== '' && formData.cin.length === 8
         };
         setValidity(newValidity);
-        if(!newValidity.nom)
-            document.getElementById('nomCtrl').innerHTML = "Le nom doit contenir plus que 2 caractères.";
-        else
-            document.getElementById('nomCtrl').innerHTML = "";
-        if(!newValidity.prenom)
-            document.getElementById('prenomCtrl').innerHTML = "Le prénom doit contenir plus que 3 caractères.";
-        else
-            document.getElementById('prenomCtrl').innerHTML = "";
-        if(!newValidity.tel)
-            document.getElementById('telCtrl').innerHTML = "Numero de telephone doit contenir 8 caractères.";
-        else
-            document.getElementById('telCtrl').innerHTML = "";
-        if(!newValidity.cin)
-            document.getElementById('cinCtrl').innerHTML = "Numero CIN doit contenir 8 caractères.";
-        else
-            document.getElementById('cinCtrl').innerHTML = "";
 
         if (Object.values(newValidity).every(Boolean)) {
             axios.post('http://localhost:8081/adduser', formData)
@@ -75,7 +59,7 @@ function Create() {
                 <form onSubmit={handleSubmit}>
                     <div className='mb-2'>
                         <div className='d-flex'>
-                            <label htmlFor='nom'>Nom:</label><p style={{color: "red", marginLeft: "10px"}} id='nomCtrl'></p>
+                            <label htmlFor='nom'>Nom:</label>{!validity.nom && <p style={{color: "red", marginLeft: "10px"}}>Le nom doit contenir plus que 2 caractères.</p>}
                         </div>
                         <input
                             id='nom'
@@ -89,7 +73,7 @@ function Create() {
                     </div>
                     <div className='mb-2'>
                         <div className='d-flex'>
-                            <label htmlFor='prenom'>Prénom:</label><p style={{color: "red", marginLeft: "10px"}} id='prenomCtrl'></p>
+                            <label htmlFor='prenom'>Prénom:</label>{!validity.prenom && <p style={{color: "red", marginLeft: "10px"}}>Le prénom doit contenir plus que 3 caractères.</p>}
                         </div>
                         <input
                             id='prenom'
@@ -129,7 +113,7 @@ function Create() {
                     </div>
                     <div className='mb-2'>
                         <div className='d-flex'>
-                            <label htmlFor='tel'>Numero Telephone:</label><p style={{color: "red", marginLeft: "10px"}} id='telCtrl'></p>
+                            <label htmlFor='tel'>Numero Telephone:</label>{!validity.tel && <p style={{color: "red", marginLeft: "10px"}}>Numero de telephone doit contenir 8 caractères.</p>}
                         </div>
                         <input
                             id='tel'
@@ -143,7 +127,7 @@ function Create() {
                     </div>
                     <div className='mb-2'>
                         <div className='d-flex'>
-                            <label htmlFor='cin'>Numero CIN:</label><p style={{color: "red", marginLeft: "10px"}} id='cinCtrl'></p>
+                            <label htmlFor='cin'>Numero CIN:</label>{!validity.cin && <p style={{color: "red", marginLeft: "10px"}}>Numero CIN doit contenir 8 caractères.</p>}
                         </div>
                         <input
                             id='cin'

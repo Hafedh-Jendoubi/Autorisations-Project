@@ -53,7 +53,7 @@ function Home() {
 
     return (
         <div className='d-flex flex-column justify-content-center align-items-center bg-light vh-100'>
-            <h1 style={{ margin: "30px auto" }}>La liste des clients:</h1>
+            <h1 style={{ margin: "30px auto" }}>La liste des clients</h1>
             <div className='w-75 rounded bg-white border shadow p-4'>
                 <div className='row'>
                     <div className='col'>
@@ -87,7 +87,7 @@ function Home() {
                                 <td>{d.genre === "M" ? "Male" : "Femelle"}</td>
                                 <td>{d.cin}</td>
                                 <td>
-                                    <Link to={`/read/${d.id}`} className='btn btn-sm btn-primary me-2'>Afficher</Link>
+                                    <Link to={`/read/${d.id}`} style={{backgroundColor: "grey"}} className='btn btn-sm btn-primary me-2'>Afficher</Link>
                                     <button className='btn btn-sm btn-danger me-2' onClick={() => deleteUser(d.id)}>Supprimer</button>
                                     <button className='btn btn-sm btn-info'>Autorisation</button>
                                 </td>

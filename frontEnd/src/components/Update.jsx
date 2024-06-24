@@ -22,7 +22,7 @@ function Update() {
     tel: true,
     cin: true
   });
-
+  
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
