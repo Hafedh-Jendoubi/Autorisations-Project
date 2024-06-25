@@ -1,5 +1,5 @@
 # Autorisations Project
-![Current Version](https://img.shields.io/badge/version-v1.3-blue)
+![Current Version](https://img.shields.io/badge/version-v1.4-blue)
 ![GitHub contributors](https://img.shields.io/github/contributors/Hafedh-Jendoubi/Autorisations-Project)
 ![GitHub top language](https://img.shields.io/github/languages/top/Hafedh-Jendoubi/Autorisations-Project)
 ![GitHub stars](https://img.shields.io/github/stars/Hafedh-Jendoubi/Autorisations-Project)
@@ -19,7 +19,11 @@
 > In order to install the project you have to run this command:
 >
 > ```bash
-> npm install react-router-dom axios bootstrap
+> Path\To\Autorisations-Project\frontEnd> npm install react-router-dom axios bootstrap
+> ```
+> In case you had an error while compiling, add this command and check again:
+> ```bash
+> Path\To\Autorisations-Project\frontEnd> npm install @react-pdf/renderer --save
 > ```
 >
 > ## Usage
@@ -27,18 +31,16 @@
 > For the frontEnd directory:
 > 
 > ```bash
-> npm run dev
+> Path\To\Autorisations-Project> cd frontEnd
+> Path\To\Autorisations-Project\frontEnd> npm run dev
 > ```
 > 
 > For the Backend directory:
 > 
 > ```bash
-> npm start
-> ```
->
-> Type in your browser:
-> ```
-> http://localhost:5173/
+> Path\To\Autorisations-Project\frontEnd> cd ..
+> Path\To\Autorisations-Project> cd Backend
+> Path\To\Autorisations-Project\Backend: npm start
 > ```
 
 > [!TIP]
