@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import MyDocument from './ReactPDF';
+import { PDFDownloadLink } from "@react-pdf/renderer";
 
 function Home() {
     const [data, setData] = React.useState([]);
@@ -87,9 +89,20 @@ function Home() {
                                 <td>{d.genre === "M" ? "Male" : "Femelle"}</td>
                                 <td>{d.cin}</td>
                                 <td>
-                                    <Link to={`/read/${d.id}`} style={{backgroundColor: "grey"}} className='btn btn-sm btn-primary me-2'>Afficher</Link>
+                                    <Link to={`/read/${d.id}`} className='btn btn-sm btn-primary me-2'>Afficher</Link>
                                     <button className='btn btn-sm btn-danger me-2' onClick={() => deleteUser(d.id)}>Supprimer</button>
-                                    <button className='btn btn-sm btn-info'>Autorisation</button>
+                                    <PDFDownloadLink
+                                        document={<MyDocument client={d}/>}
+                                        fileName={d.nom + "-" + d.prenom + ".pdf"}
+                                    >
+                                        {({ blob, url, loading, error }) =>
+                                            loading ? (
+                                                'Loading document...'
+                                            ) : (
+                                                <button className='btn btn-sm btn-info'>Autorisation</button>
+                                            )
+                                        }
+                                    </PDFDownloadLink>
                                 </td>
                             </tr>
                         ))}
