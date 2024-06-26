@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
 import { formatDate } from '../utils'
 
 // Create styles
@@ -36,6 +36,15 @@ const styles = StyleSheet.create({
   italic: {
     fontFamily: 'Helvetica-Oblique',
   },
+  image: {
+    width: '110px',
+    height: '80px',
+    marginLeft: '400px',
+    marginBottom: '60px'
+  },
+  sign: {
+    marginLeft: '400px',
+  }
 });
 
 // Create Document Component
@@ -46,6 +55,7 @@ function MyDocument(props) {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
+        <Image src={"PDF_Pictures/cni.jpg"} alt="CNI Logo." style={styles.image}></Image>
         <View style={styles.header}>
           <Text style={styles.bold}>CNI Mentor</Text>
           <Text>17, 1005 Ave Belhassen Ben Chaabane.</Text>
@@ -75,7 +85,8 @@ function MyDocument(props) {
 
         <View style={styles.signature}>
           <Text>Sincerely,</Text>
-          <Text style={{ marginTop: 20 }}>CNI Mentor</Text>
+          <Text style={{ marginTop: 10 }}>CNI Mentor</Text>
+          <Image src={"PDF_Pictures/pngegg.png"} alt="CNI Signature." style={styles.sign}></Image>
         </View>
       </Page>
     </Document>
