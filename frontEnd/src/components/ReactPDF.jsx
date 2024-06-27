@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: 'Helvetica',
     lineHeight: 1.5,
+    border: '2px solid black'
   },
   section: {
     margin: 10,
@@ -47,15 +48,14 @@ const styles = StyleSheet.create({
   }
 });
 
-// Create Document Component
-function MyDocument(props) {
+//Autorisation 1 Template
+export function Autor1(props) {
   const { client } = props;
-  console.log(client);
 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        <Image src={"PDF_Pictures/cni.jpg"} alt="CNI Logo." style={styles.image}></Image>
+        <Image src={"PDF_Pictures/cni.jpg"} style={styles.image}></Image>
         <View style={styles.header}>
           <Text style={styles.bold}>CNI Mentor</Text>
           <Text>17, 1005 Ave Belhassen Ben Chaabane.</Text>
@@ -85,12 +85,21 @@ function MyDocument(props) {
 
         <View style={styles.signature}>
           <Text>Sincerely,</Text>
-          <Text style={{ marginTop: 10 }}>CNI Mentor</Text>
-          <Image src={"PDF_Pictures/pngegg.png"} alt="CNI Signature." style={styles.sign}></Image>
+          <Text>CNI Mentor</Text>
+          <Image src={"PDF_Pictures/pngegg.png"} style={styles.sign}></Image>
         </View>
       </Page>
     </Document>
   );
 }
 
-export default MyDocument;
+//Autorisation 2 Template
+export function Autor2() {
+  return (
+    <Document>
+      <Page size="A4" style={styles.page}>
+        <Text>Hello There</Text>
+      </Page>
+    </Document>
+  );
+}

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import MyDocument from './ReactPDF';
-import { PDFDownloadLink } from "@react-pdf/renderer";
+import Cards from './Cards'
 
 function Home() {
     const [data, setData] = React.useState([]);
+    const [modal, setModal] = React.useState(false);
+    const [chosenClient, setChosenClient] = React.useState({});
 
     React.useEffect(() => {
         fetch('http://localhost:8081/user')
@@ -53,8 +54,35 @@ function Home() {
         }
     }
 
+    function displayModal(currClient) {
+        setModal(true);
+        setChosenClient(currClient);
+    }
+
+    function closeModal() {
+        setModal(false);
+    }
+
     return (
         <div className='d-flex flex-column justify-content-center align-items-center bg-light vh-100'>
+            {modal && 
+                <div className="modal fade show" style={{ display: 'block' }}>
+                    <div className="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title">Générer autorisations pour {chosenClient.nom + " " + chosenClient.prenom}:</h5>
+                                <button type="button" className="btn-close" onClick={closeModal}></button>
+                            </div>
+                            <div className="modal-body">
+                                <Cards client={chosenClient} />
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" onClick={closeModal}>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
             <h1 style={{ margin: "30px auto" }}>La liste des clients</h1>
             <div className='w-75 rounded bg-white border shadow p-4'>
                 <div className='row'>
@@ -68,7 +96,7 @@ function Home() {
                         />
                     </div>
                     <div className='col col-lg-2'>
-                        <Link to='/create' className='btn btn-success' style={{ marginBottom: "25px" }}>Ajouter Client</Link>
+                        <Link to='/create' className='btn btn-success' style={{ marginBottom: "25px", marginLeft: "85px" }}>Ajouter Client</Link>
                     </div>
                 </div>
                 <table className='table table-hover align-middle'>
@@ -91,18 +119,7 @@ function Home() {
                                 <td>
                                     <Link to={`/read/${d.id}`} className='btn btn-sm btn-primary me-2'>Afficher</Link>
                                     <button className='btn btn-sm btn-danger me-2' onClick={() => deleteUser(d.id)}>Supprimer</button>
-                                    <PDFDownloadLink
-                                        document={<MyDocument client={d}/>}
-                                        fileName={d.nom + "-" + d.prenom + ".pdf"}
-                                    >
-                                        {({ blob, url, loading, error }) =>
-                                            loading ? (
-                                                'Loading document...'
-                                            ) : (
-                                                <button className='btn btn-sm btn-info'>Autorisation</button>
-                                            )
-                                        }
-                                    </PDFDownloadLink>
+                                    <button className='btn btn-sm btn-info' onClick={() => displayModal(d)}>Autorisation</button>
                                 </td>
                             </tr>
                         ))}
