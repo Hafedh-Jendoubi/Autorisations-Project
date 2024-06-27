@@ -19,11 +19,7 @@
 > In order to install the project you have to run this command:
 >
 > ```bash
-> Path\To\Autorisations-Project\frontEnd> npm install react-router-dom axios bootstrap
-> ```
-> In case you had an error while compiling, add this command and check again:
-> ```bash
-> Path\To\Autorisations-Project\frontEnd> npm install @react-pdf/renderer --save
+> Path\To\Autorisations-Project\frontEnd> npm install react-router-dom axios bootstrap @react-pdf/renderer --save
 > ```
 >
 > ## Usage
