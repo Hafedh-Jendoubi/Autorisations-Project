@@ -54,6 +54,15 @@ function Home() {
         }
     }
 
+    function displayModal(currClient) {
+        setModal(true);
+        setChosenClient(currClient);
+    }
+
+    function closeModal() {
+        setModal(false);
+    }
+
     return (
         <div className='d-flex flex-column justify-content-center align-items-center bg-light vh-100'>
             {modal && 
