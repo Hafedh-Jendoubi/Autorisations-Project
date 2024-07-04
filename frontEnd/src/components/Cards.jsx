@@ -1,8 +1,26 @@
 import React from "react"
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import { Autor1, Autor2 } from './ReactPDF'
+import { Autor1, Autor2 } from './ReactPDF';
+import emailjs from 'emailjs-com';
 
 function Cards(props) {
+    function sendEmail() {
+        const templateParams = {
+            from_name: 'noreply-autorisations',
+            from_email: 'noreply@autorisations.tn',
+            to_name: props.client.nom + " " + props.client.prenom,
+            message: 'This is just a warning! Someone has exported your information in a PDF File.'
+        };
+
+        emailjs.send('service_rkyo9ji', 'template_qbdpuws', templateParams, 'TGLZuzmUNYwJ4M99c')
+            .then((result) => {
+                console.log(result.text);
+                window.location.reload();
+            }, (error) => {
+                console.log(error.text);
+            });
+    }
+
     return (
         <div className="container" style={{display: 'block'}}>
             <div className="row">
@@ -15,7 +33,7 @@ function Cards(props) {
                         <PDFDownloadLink document={<Autor1 client={props.client} />} fileName={props.client.nom + "-" + props.client.prenom + ".pdf"}>
                             {
                                 ({ loading }) =>
-                                    loading ? 'Loading document...' : <button className='btn btn-primary' style={{ marginLeft: "80px" }}>Telecharger</button>
+                                    loading ? 'Loading document...' : <button className='btn btn-primary' style={{ marginLeft: "80px" }} onClick={sendEmail}>Telecharger</button>
                             }
                         </PDFDownloadLink>
                     </div>

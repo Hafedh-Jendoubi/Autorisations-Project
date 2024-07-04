@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Cards from './Cards'
+import Cards from './Cards';
 
 function Home() {
     const [data, setData] = React.useState([]);
