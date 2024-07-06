@@ -36,7 +36,7 @@
 > ```bash
 > Path\To\Autorisations-Project\frontEnd> cd ..
 > Path\To\Autorisations-Project> cd Backend
-> Path\To\Autorisations-Project\Backend: npm start
+> Path\To\Autorisations-Project\Backend> npm start
 > ```
 
 > [!TIP]
