@@ -51,7 +51,7 @@ function Stats() {
 
     return (
         <div style={{ width: "800px" }}>
-            <canvas ref={chartRef}></canvas>
+            
         </div>
     );
 }
