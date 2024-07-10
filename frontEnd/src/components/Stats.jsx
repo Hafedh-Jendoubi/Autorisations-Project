@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import Chart from 'chart.js/auto';
+import { Link } from 'react-router-dom';
 
 function Stats() {
     const chartRef = useRef(null);
     const [data, setData] = React.useState([]);
-    
+
     React.useEffect(() => {
         fetch('http://localhost:8081/user')
             .then(res => res.json())
@@ -29,15 +30,25 @@ function Stats() {
             {
                 type: 'bar',
                 options: {
-                    indexAxis: 'y',
+                    indexAxis: 'y', // Make the bars horizontal
                     animation: {
-                        duration: 1500,
-                        easing: 'easeInOutQuad'
+                        duration: 1500, // Animation duration in milliseconds
+                        easing: 'easeInOutQuad' // Animation easing function
                     },
                     scales: {
                         x: {
                             ticks: {
-                                stepSize: 1
+                                stepSize: 1 // Ensure ticks use integer values
+                            },
+                            title: {
+                                display: true,
+                                text: 'Count' // X-axis label
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Year' // Y-axis label
                             }
                         }
                     },
@@ -58,11 +69,11 @@ function Stats() {
                     labels: labels,
                     datasets: [
                         {
-                            label: 'Nombre de clients ayant cette date de naissance',
+                            label: 'Nombre de naissances par an',
                             data: chartData,
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
                             borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 2
+                            borderWidth: 1
                         }
                     ]
                 }
@@ -75,8 +86,13 @@ function Stats() {
     }, [data]); // Add 'data' as a dependency to the useEffect hook
 
     return (
-        <div style={{ width: "90%", margin: "0 auto", display: "flex", justifyContent: "center" }}>
-            <canvas ref={chartRef} style={{ width: "1000px", height: "150px" }}></canvas>
+        <div>
+            <div style={{marginLeft: "40px"}}>
+                <Link to='/' className='btn btn-primary ms-3' style={{marginLeft: "90px", marginTop: "50px"}}>Retour</Link>
+            </div>
+            <div style={{ width: "80%", margin: "20px auto", display: "flex", justifyContent: "center", padding: "10px" }}>
+                <canvas ref={chartRef} style={{ width: "900px", height: "120px" }}></canvas>
+            </div>
         </div>
     );
 }
