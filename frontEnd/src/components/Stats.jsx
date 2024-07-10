@@ -14,14 +14,12 @@ function Stats() {
     }, []);
 
     useEffect(() => {
-        // Process the data to count the number of users born in each year
         const birthYearCount = data.reduce((acc, curr) => {
             const year = new Date(curr.dateNaissance).getFullYear();
             acc[year] = (acc[year] || 0) + 1;
             return acc;
         }, {});
 
-        // Extract labels (years) and data (counts)
         const labels = Object.keys(birthYearCount).sort((a, b) => a - b);
         const chartData = labels.map(year => birthYearCount[year]);
 
@@ -30,25 +28,25 @@ function Stats() {
             {
                 type: 'bar',
                 options: {
-                    indexAxis: 'y', // Make the bars horizontal
+                    indexAxis: 'y',
                     animation: {
-                        duration: 1500, // Animation duration in milliseconds
-                        easing: 'easeInOutQuad' // Animation easing function
+                        duration: 1500,
+                        easing: 'easeInOutQuad'
                     },
                     scales: {
                         x: {
                             ticks: {
-                                stepSize: 1 // Ensure ticks use integer values
+                                stepSize: 1
                             },
                             title: {
                                 display: true,
-                                text: 'Count' // X-axis label
+                                text: 'Count'
                             }
                         },
                         y: {
                             title: {
                                 display: true,
-                                text: 'Year' // Y-axis label
+                                text: 'Year'
                             }
                         }
                     },
@@ -83,7 +81,7 @@ function Stats() {
         return () => {
             chart.destroy();
         };
-    }, [data]); // Add 'data' as a dependency to the useEffect hook
+    }, [data]);
 
     return (
         <div>
