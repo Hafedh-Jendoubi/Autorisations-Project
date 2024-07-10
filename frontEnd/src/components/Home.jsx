@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Cards from './Cards'
+import Cards from './Cards';
 
 function Home() {
     const [data, setData] = React.useState([]);
@@ -85,7 +85,7 @@ function Home() {
             }
             <h1 style={{ margin: "30px auto" }}>La liste des clients</h1>
             <div className='w-75 rounded bg-white border shadow p-4'>
-                <div className='row'>
+                <div className='row' style={{marginBottom: "20px"}}>
                     <div className='col'>
                         <input
                             type='text'
@@ -95,8 +95,11 @@ function Home() {
                             onChange={handleChange}
                         />
                     </div>
+                    <div className='col col-lg-1'>
+                        <Link to='/Stats' className='btn btn-secondary'>Statistiques</Link>
+                    </div>
                     <div className='col col-lg-2'>
-                        <Link to='/create' className='btn btn-success' style={{ marginBottom: "25px", marginLeft: "85px" }}>Ajouter Client</Link>
+                        <Link to='/create' className='btn btn-success'>Ajouter Client</Link>
                     </div>
                 </div>
                 <table className='table table-hover align-middle'>
