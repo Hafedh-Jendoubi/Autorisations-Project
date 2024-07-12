@@ -1,5 +1,5 @@
 # Autorisations Project
-![Current Version](https://img.shields.io/badge/version-v1.4-blue)
+![Current Version](https://img.shields.io/badge/version-v1.6-blue)
 ![GitHub contributors](https://img.shields.io/github/contributors/Hafedh-Jendoubi/Autorisations-Project)
 ![GitHub top language](https://img.shields.io/github/languages/top/Hafedh-Jendoubi/Autorisations-Project)
 ![GitHub stars](https://img.shields.io/github/stars/Hafedh-Jendoubi/Autorisations-Project)
@@ -19,7 +19,7 @@
 > In order to install the project you have to run this command:
 >
 > ```bash
-> Path\To\Autorisations-Project\frontEnd> npm install react-router-dom axios bootstrap emailjs-com @react-pdf/renderer --save
+> Path\To\Autorisations-Project\frontEnd> npm install react-router-dom axios bootstrap emailjs-com chart.js @react-pdf/renderer --save
 > ```
 >
 > ## Usage
