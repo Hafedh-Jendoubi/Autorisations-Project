@@ -1,6 +1,6 @@
 import React from "react"
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import { Autor1, Autor2 } from './ReactPDF';
+import { Autor1, Autor2, Autor3 } from './ReactPDF';
 import emailjs from 'emailjs-com';
 
 function Cards(props) {
@@ -44,7 +44,7 @@ function Cards(props) {
                     <div className="card-body">
                         <h5 className="card-title">Demande d'autorisation d'absence</h5>
                         <p className="card-text">Autorisation pour {props.client.nom + " " + props.client.prenom} d'avoir une autorisation d'absence.</p>
-                        <PDFDownloadLink document={<Autor2 />} fileName={props.client.nom + "-" + props.client.prenom + ".pdf"}>
+                        <PDFDownloadLink document={<Autor2 client={props.client}/>} fileName={props.client.nom + "-" + props.client.prenom + ".pdf"}>
                             {
                                 ({ loading }) =>
                                     loading ? 'Loading document...' : <button className='btn btn-primary' style={{ marginLeft: "80px" }}>Telecharger</button>
@@ -60,7 +60,7 @@ function Cards(props) {
                     <div className="card-body">
                         <h5 className="card-title">Autorisation du droit à l'image</h5>
                         <p className="card-text">Autorisation pour {props.client.nom + " " + props.client.prenom} d'avoir une autorisation du droit à l'image.</p>
-                        <PDFDownloadLink document={<Autor1 client={props.client} />} fileName={props.client.nom + "-" + props.client.prenom + ".pdf"}>
+                        <PDFDownloadLink document={<Autor3 client={props.client} />} fileName={props.client.nom + "-" + props.client.prenom + ".pdf"}>
                             {
                                 ({ loading }) =>
                                     loading ? 'Loading document...' : <button className='btn btn-primary' style={{ marginLeft: "80px" }}>Telecharger</button>
