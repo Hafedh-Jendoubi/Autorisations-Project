@@ -5,7 +5,7 @@
 ![GitHub stars](https://img.shields.io/github/stars/Hafedh-Jendoubi/Autorisations-Project)
 
 > [!NOTE]
->Authorization is a project currently undertaken by myself, Hafedh Jendoubi, assigned by the mentor from the Centre National d'Informatique (CNI). I have chosen to utilize React and Node.js for the project implementation.
+>Authorization is a project currently undertaken by myself, Hafedh Jendoubi, assigned by the mentor from the Centre National d'Informatique (CNI). I have chosen to implement the project using React and Node.js to enhance my proficiency in JavaScript and React, as well as to expand my knowledge and expertise in these technologies.
 
 > [!IMPORTANT]
 > ## Download & Installation
